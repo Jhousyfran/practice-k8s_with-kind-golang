@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: goserver
-  replicas: 10
+  replicas: 2
   template:
   # Basicamente o template do POD
     metadata:
@@ -16,5 +16,27 @@ spec:
         app: "goserver"
     spec:
       containers:
-        - name: "goserver"
-          image: "jhousyfran/hello-go:v2"
+        - name: goserver
+          image: jhousyfran/hello-go:v4
+          # === CARREGANDO TODAS AS VARIAVEIS DO CONFIGMAP
+          envFrom:
+            - configMapRef:
+                name: goserver-env
+          # env:
+          #     # === PASSANDO AS VARIAVEIS EXPLICITAMENTES COM VALORES
+          #     # - name: NAME
+          #     #   value: 'Jhousyfran Costa'
+          #     # - name: AGE
+          #     #   value: '23'
+
+          #     # === SETANDO AS VARIAVEIS COM VALORES DO CONFIGMAP
+          #     - name: NAME
+          #       valueFrom:
+          #         configMapKeyRef:
+          #           name: goserver-env
+          #           key: NAME
+          #     - name: AGE
+          #       valueFrom:
+          #         configMapKeyRef:
+          #           name: goserver-env
+          #           key: AGE

@@ -8,5 +8,5 @@ metadata:
 
 spec:
   containers:
-    - name: "goserver"
+    - name: goserver
       image: "jhousyfran/hello-go:latest"
