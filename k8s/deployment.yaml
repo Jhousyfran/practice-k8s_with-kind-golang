@@ -40,3 +40,10 @@ spec:
           #         configMapKeyRef:
           #           name: goserver-env
           #           key: AGE
+          volumeMounts:
+            - mountPath: /go/pvc
+              name: goserver-pvc
+      volumes:
+        - name: goserver-pvc
+          persistentVolumeClaim:
+            claimName: goserver-pvc
